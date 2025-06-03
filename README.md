@@ -9,14 +9,16 @@ This server provides access to the Shopify Storefront API via MCP, allowing AI a
 - Support for GraphQL queries and mutations
 - Automatic token handling and validation
 - Easy integration with MCP-compatible AI assistants
+- Enhanced token discovery with optional headless browsing
 
 ## Setup Instructions
 
 1. Clone this repository
 2. Install dependencies: `pip install -r requirements.txt`
-3. Copy `.env.example` to `.env` and configure your environment variables
-4. Generate a Storefront API token via Shopify Admin (see below)
-5. Run the server: `python -m shopify_storefront_mcp_server`
+3. (Optional) Install browsers for Playwright: `playwright install`
+4. Copy `.env.example` to `.env` and configure your environment variables
+5. Generate a Storefront API token via Shopify Admin (see below)
+6. Run the server: `python -m shopify_storefront_mcp_server`
 
 ## Environment Variables
 
@@ -55,9 +57,10 @@ Running with the MCP server:
 python -m shopify_storefront_mcp_server
 ```
 
+
 The server exposes the following MCP tools:
 
-- `shopify_discover`: Detect if a URL belongs to a Shopify storefront and discover authentication tokens
+- `shopify_discover`: Detect if a URL belongs to a Shopify storefront and discover authentication tokens. Pass `use_browser=True` for JS-heavy sites.
 - `shopify_storefront_graphql`: Execute GraphQL queries against the Storefront API
 - `customer_data`: Unified tool for all customer data operations (Create, Read, Update, Delete)
 
